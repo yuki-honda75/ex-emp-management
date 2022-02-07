@@ -19,8 +19,19 @@ import jp.co.sample.repository.EmployeeRepository;
 public class EmployeeService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
+	/**
+	 * 
+	 * @return 従業員リスト
+	 */
 	public List<Employee> showList() {
 		return employeeRepository.findAll();
+	}
+	/**
+	 * 
+	 * @param id 従業員ID
+	 * @return 従業員情報
+	 */
+	public Employee showDetail(Integer id) {
+		return employeeRepository.load(id);
 	}
 }
