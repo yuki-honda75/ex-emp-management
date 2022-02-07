@@ -9,10 +9,15 @@ import org.springframework.transaction.annotation.Transactional;
  *
  */
 
+import jp.co.sample.domain.Administrator;
 import jp.co.sample.repository.AdministratorRepository;
 @Service
 @Transactional
 public class AdministratorService {
 	@Autowired
 	private AdministratorRepository administratorRepository;
+	
+	public void insert(Administrator administrator) {
+		administratorRepository.insert(administrator);
+	}
 }
