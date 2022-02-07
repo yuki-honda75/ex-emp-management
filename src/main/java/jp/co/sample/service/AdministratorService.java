@@ -16,7 +16,10 @@ import jp.co.sample.repository.AdministratorRepository;
 public class AdministratorService {
 	@Autowired
 	private AdministratorRepository administratorRepository;
-	
+	/**
+	 * 
+	 * @param administrator 管理者情報
+	 */
 	public void insert(Administrator administrator) {
 		administratorRepository.insert(administrator);
 	}
