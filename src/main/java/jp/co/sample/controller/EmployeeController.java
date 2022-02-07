@@ -20,7 +20,11 @@ import jp.co.sample.service.EmployeeService;
 public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
-	
+	/**
+	 * 
+	 * @param model 従業員リストを格納するモデル
+	 * @return 従業員リストへフォワード
+	 */
 	@RequestMapping("/showList")
 	public String showList(Model model) {
 		List<Employee> employeeList = employeeService.showList();
