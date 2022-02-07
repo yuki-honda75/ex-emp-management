@@ -26,10 +26,13 @@ public class AdministratorController {
 	 * @return 従業員パラメータ
 	 */
 	@ModelAttribute 
-	InsertAdministratorForm setUpInsertAdministratorForm() {
+	public InsertAdministratorForm setUpInsertAdministratorForm() {
 		return new InsertAdministratorForm();
 	}
-	
+	/**
+	 * 
+	 * @return ログイン情報
+	 */
 	@ModelAttribute
 	public LoginForm setUpLoginForm() {
 		return new LoginForm();
@@ -42,17 +45,24 @@ public class AdministratorController {
 	public String toInsert() {
 		return "administrator/insert";
 	}
-	
-	@RequestMapping("/")
-	public String toLogin() {
-		return "administrator/login";
-	}
-	
+	/**
+	 * 
+	 * @param form 管理者情報
+	 * @return ログイン画面へリダイレクト
+	 */
 	@RequestMapping("/insert")
 	public String insert(InsertAdministratorForm form) {
 		Administrator administrator = new Administrator();
 		BeanUtils.copyProperties(form, administrator);
 		administratorService.insert(administrator);
 		return "redirect:/";
+	}
+	/**
+	 * 
+	 * @return ログイン画面へフォワード
+	 */
+	@RequestMapping("/")
+	public String toLogin() {
+		return "administrator/login";
 	}
 }
