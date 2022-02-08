@@ -47,7 +47,7 @@ public class AdministratorController {
 	}
 	/**
 	 * 
-	 * @return administrator/insert.htmlへフォワード
+	 * @return 登録画面へフォワード
 	 */
 	@RequestMapping("/toInsert")
 	public String toInsert() {
