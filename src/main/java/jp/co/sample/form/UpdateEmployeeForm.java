@@ -21,8 +21,6 @@ public class UpdateEmployeeForm {
 	/** 名前 */
 	@NotBlank(message = "名前を入力してください")
 	private String name;
-	/** 画像 */
-	private String image;
 	/** 性別 */
 	@NotEmpty(message = "選択してください")
 	private String gender;
@@ -67,12 +65,6 @@ public class UpdateEmployeeForm {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
 	public String getGender() {
 		return gender;
 	}
@@ -83,7 +75,7 @@ public class UpdateEmployeeForm {
 		return hireDate;
 	}
 	public Date getHireDateFormat(){
-		SimpleDateFormat format = new SimpleDateFormat();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date hireDateFormat = null;
 		try {
 			hireDateFormat = format.parse(hireDate);
@@ -123,20 +115,23 @@ public class UpdateEmployeeForm {
 	public String getSalary() {
 		return salary;
 	}
+	public Integer getSalaryInt() {
+		return Integer.parseInt(salary);
+	}
 	public void setSalary(String salary) {
 		this.salary = salary;
 	}
 	public String getCharacteristics() {
 		return characteristics;
 	}
-	public Integer getCharacteristicsInt() {
-		return Integer.parseInt(characteristics);
-	}
 	public void setCharacteristics(String characteristics) {
 		this.characteristics = characteristics;
 	}
 	public String getDependentsCount() {
 		return dependentsCount;
+	}
+	public Integer getDependentsCountInt() {
+		return Integer.parseInt(dependentsCount);
 	}
 	public void setDependentsCount(String dependentsCount) {
 		this.dependentsCount = dependentsCount;
@@ -145,7 +140,7 @@ public class UpdateEmployeeForm {
 	@Override
 	public String toString() {
 		return "UpdateEmployeeForm [id=" + id + ", name="
-				+ name + ", image=" + image + ", gender="
+				+ name + ", gender="
 				+ gender + ", hireDate=" + hireDate
 				+ ", mailAddress=" + mailAddress
 				+ ", zipCode=" + zipCode + ", address="
