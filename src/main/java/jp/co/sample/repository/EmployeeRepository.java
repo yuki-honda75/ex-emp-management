@@ -3,6 +3,9 @@ package jp.co.sample.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -42,11 +45,16 @@ public class EmployeeRepository {
 	 * 
 	 * @return 従業員リスト
 	 */
-	public List<Employee> findAll() {
-		String sql = "select * from employees order by hire_date desc";
+	public Page<Employee> findAll(Pageable pageable) {
+		String sql = "select * from employees order by hire_date desc"
+				+ " limit " + pageable.getPageSize()
+				+ " offset " + pageable.getOffset();
+		String sqlCount = "select count(*) from employees";
+		MapSqlParameterSource param = new MapSqlParameterSource();
 		
+		int count = template.queryForObject(sqlCount, param, Integer.class);
 		List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
-		return employeeList;
+		return new PageImpl<Employee>(employeeList, pageable, count);
 	}
 	/**
 	 * 
